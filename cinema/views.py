@@ -28,22 +28,26 @@ class OrderPagination(PageNumberPagination):
 class GenreViewSet(viewsets.ModelViewSet):
     queryset = Genre.objects.all().order_by("id")
     serializer_class = GenreSerializer
+    pagination_class = None
 
 
 class ActorViewSet(viewsets.ModelViewSet):
     queryset = Actor.objects.all().order_by("id")
     serializer_class = ActorSerializer
+    pagination_class = None
 
 
 class CinemaHallViewSet(viewsets.ModelViewSet):
     queryset = CinemaHall.objects.all().order_by("id")
     serializer_class = CinemaHallSerializer
+    pagination_class = None
 
 
 class MovieViewSet(viewsets.ModelViewSet):
     queryset = Movie.objects.prefetch_related(
         "genres", "actors"
     ).order_by("id")
+    pagination_class = None
 
     def get_queryset(self):
         queryset = self.queryset
@@ -76,6 +80,7 @@ class MovieSessionViewSet(viewsets.ModelViewSet):
     queryset = MovieSession.objects.select_related(
         "movie", "cinema_hall"
     ).order_by("id")
+    pagination_class = None
 
     def get_queryset(self):
         queryset = self.queryset
