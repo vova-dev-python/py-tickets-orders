@@ -1,3 +1,5 @@
+from rest_framework.pagination import PageNumberPagination
+
 from django.db import transaction
 
 from django.core.exceptions import ValidationError as DjangoValidationError
@@ -224,3 +226,9 @@ class OrderSerializer(serializers.ModelSerializer):
 
 class OrderListSerializer(OrderSerializer):
     tickets = TicketListSerializer(many=True, read_only=True)
+
+
+class OrderPagination(PageNumberPagination):
+    page_size = 10
+    page_size_query_param = "page_size"
+    max_page_size = 100

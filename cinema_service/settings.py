@@ -139,7 +139,7 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 REST_FRAMEWORK = {
     "DEFAULT_PAGINATION_CLASS": (
-        "cinema.views.OrderPagination"
+        "cinema.serializers.OrderPagination"
     ),
     "PAGE_SIZE": 10,
 }
